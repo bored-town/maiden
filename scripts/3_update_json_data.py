@@ -1,6 +1,7 @@
 import json
 
-json_path   = '../docs/{}.json'
+json_path = '../docs/{}.json'
+ipfs_url  = 'https://some-ipfs.com/maiden/{}.png' # TODO
 
 for token_id in range(1, 10_000+1):
     src = json_path.format(token_id)
@@ -9,10 +10,12 @@ for token_id in range(1, 10_000+1):
     data = json.load(open(src))
 
     # update data
-    attr = data['attributes'][1]
-    attr['value'] = attr['value'].removesuffix(' Mandala')
+    new_ipfs = ipfs_url.format(token_id)
+    print(token_id, data['image'], new_ipfs)
 
+    """
     # write file
     print(src)
     with open(src, "w") as f:
         json.dump(data, f)
+    """
